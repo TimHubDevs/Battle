@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb85755333354b7394bf520cbeba98c3, type: 3}
-  m_Name: CloserData
+  m_Script: {fileID: 11500000, guid: c853711d349c47b2a15608407ebf857d, type: 3}
+  m_Name: AIData
   m_EditorClassIdentifier: 
-  fighterName: Closer
-  typeFighter: 0
-  prefab: {fileID: 5560693082328946032, guid: 4c9ab9f4af58abd409246194c55534f2, type: 3}
-  health: 100
-  damage: 20
+  countCloser: 0
+  countFarer: 0

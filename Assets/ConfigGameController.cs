@@ -7,6 +7,8 @@ public class ConfigGameController : MonoBehaviour
     [SerializeField] private Button _refreshMinion;
     [SerializeField] private Button _loadGameButton;
     [SerializeField] private GameObject _minionParent;
+    [SerializeField] private PlayerBattleConfigSO _playerBattleConfigSo;
+    [SerializeField] private GameDataSO _gameDataSO;
 
     private void Awake()
     {
@@ -20,9 +22,33 @@ public class ConfigGameController : MonoBehaviour
         {
             Debug.Log("save minion pos and type to SO Battle Config \n Load Game Scene");
             //save minion pos and type to SO Battle Config
+            SetAllMinion();
             //Load Game Scene
             SceneManager.LoadScene("Game");
         });
+    }
+
+    private void SetAllMinion()
+    {
+        int closerCount = 0;
+        int farerCount = 0;
+        var minions = FindObjectsOfType<Minion>();
+        foreach (var minion in minions)
+        {
+            if (minion._typeFighter == TypeFighter.FARER)
+            {
+                //add minion information to SO Player
+                farerCount++;
+            }
+            if (minion._typeFighter == TypeFighter.CLOSER)
+            {
+                //add minion information to SO Player
+                closerCount++;
+            }
+        }
+        _gameDataSO.SetGameState(GameState.GAME);
+        _playerBattleConfigSo.SetCountCloser(closerCount);
+        _playerBattleConfigSo.SetCountFarer(farerCount);
     }
 
     private void ClearMinion()

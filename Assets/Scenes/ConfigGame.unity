@@ -1544,6 +1544,8 @@ MonoBehaviour:
   _refreshMinion: {fileID: 1721420079}
   _loadGameButton: {fileID: 1075905769}
   _minionParent: {fileID: 1400729350}
+  _playerBattleConfigSo: {fileID: 11400000, guid: 26a4615ad39aa074794dbc95915f3611, type: 2}
+  _gameDataSO: {fileID: 11400000, guid: 47c7a132076ddae4d8213504506d5b36, type: 2}
 --- !u!1 &1147529911
 GameObject:
   m_ObjectHideFlags: 0

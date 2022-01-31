@@ -12,6 +12,7 @@ public class MinionSpawner : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (!_minion) return; 
         AttemptToPlaceDefenderAt(GetSquareClicked());
     }
 
