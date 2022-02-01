@@ -298,6 +298,8 @@ GameObject:
   - component: {fileID: 5560693082328946035}
   - component: {fileID: 1133575036695279555}
   - component: {fileID: 6361955436262810771}
+  - component: {fileID: 5797732306660499929}
+  - component: {fileID: 6143004399458989787}
   m_Layer: 0
   m_Name: Closer
   m_TagString: Untagged
@@ -384,6 +386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _minionSo: {fileID: 11400000, guid: 2b4c2daabcc64874a893d81bcc49a4df, type: 2}
+  _attackEvent: {fileID: 11400000, guid: da5a2e2cdf007d84a89cc7da4ff57ccb, type: 2}
 --- !u!114 &6361955436262810771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,7 +399,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d389fdb806de76498df7332df947161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 0
+  _healthSlider: {fileID: 7741380685122113943}
+--- !u!61 &5797732306660499929
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5560693082328946032}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2}
+  m_EdgeRadius: 0
+--- !u!114 &6143004399458989787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5560693082328946032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20c7ea27fd42435cb1d7c079e0476af8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minionGO: {fileID: 5560693082328946032}
 --- !u!1 &6226163020623130837
 GameObject:
   m_ObjectHideFlags: 0

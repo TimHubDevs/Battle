@@ -11,7 +11,6 @@ public class ConfigGameController : MonoBehaviour
     [SerializeField] private PlayerBattleConfigSO _playerBattleConfigSo;
     [SerializeField] private PlayerBattleConfigSO _AIBattleConfigSo;
     [SerializeField] private GameDataSO _gameDataSO;
-    // private List<MinionRef> _minionRefs = new List<MinionRef>();
     private Dictionary<Vector2, TypeFighter> _minionData = new Dictionary<Vector2, TypeFighter>();
 
     private void Awake()
@@ -52,11 +51,18 @@ public class ConfigGameController : MonoBehaviour
                 closerCount++;
             }
         }
+        SOWriteData(closerCount, farerCount);
+    }
+
+    private void SOWriteData(int closerCount, int farerCount)
+    {
         _gameDataSO.SetGameState(GameState.GAME);
         _playerBattleConfigSo.SetMinions(_minionData);
         _AIBattleConfigSo.SetAIMinions();
         _playerBattleConfigSo.SetCountCloser(closerCount);
         _playerBattleConfigSo.SetCountFarer(farerCount);
+        _AIBattleConfigSo.SetCountCloser(closerCount);
+        _AIBattleConfigSo.SetCountFarer(farerCount);
     }
 
     private void ClearMinion()

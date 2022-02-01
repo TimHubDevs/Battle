@@ -6,6 +6,7 @@ public class MinionSO : ScriptableObject
     public TypeFighter typeFighter;
     public GameObject prefab;
     public float health;
+    public FloatVariable maxHealth;
     public FloatVariable damage;
 }
 

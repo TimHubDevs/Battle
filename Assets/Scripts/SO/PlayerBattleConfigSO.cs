@@ -72,17 +72,17 @@ public class PlayerBattleConfigSO : ScriptableObject
         FloatVariable hpInstance = MakeScriptableObject.CreateFloatVariableAsset(pref + "HP" + count);
         hpInstance.Init(minionSo.health);
         EditorUtility.SetDirty(hpInstance);
-        FloatVariable maxHpInstance = MakeScriptableObject.CreateFloatVariableAsset(pref + "MaxHP" + count);
-        maxHpInstance.Init(minionSo.health);
-        EditorUtility.SetDirty(maxHpInstance);
 
         var minionData = new MinionData
         {
             MinionSo = minionSo,
             position = position,
             health = hpInstance,
-            damage = minionSo.damage
+            maxhealth = minionSo.maxHealth,
+            damage = minionSo.damage,
+            attacked = false
         };
+        
         listMinionDataSo.Items.Add(minionData);
     }
 

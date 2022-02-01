@@ -5,12 +5,14 @@ public class GameDataSO : ScriptableObject
 {
     public GameState gameState;
     public QueueType queueType;
+    public int round;
     public PlayerBattleConfigSO playerBattleConfigSo;
     public PlayerBattleConfigSO aiBattleConfigSo;
 
     private void OnValidate()
     {
         if (gameState != GameState.NEW) return;
+        round = 0;
         playerBattleConfigSo.ResetConfig();
         aiBattleConfigSo.ResetConfig();
         ClearHPSO();

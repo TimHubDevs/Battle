@@ -1,9 +1,27 @@
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MinionHealth : MonoBehaviour
 {
-    [SerializeField] private FloatVariable _healthSo;
-    [SerializeField] private FloatVariable _maxhealthSo;
-    [SerializeField] private int _health;
-    
+    [SerializeField] private Slider _healthSlider;
+    private FloatVariable _healthSo;
+    public Action onDeath;
+
+    public void SetSOHealth(FloatVariable health, FloatVariable minionDataMaxhealth)
+    {
+        _healthSo = health;
+        _healthSlider.maxValue = minionDataMaxhealth.Value;
+    }
+
+    private void Update()
+    {
+        if (!_healthSo) return;
+        if (_healthSo.Value <= 0)
+        {
+            onDeath.Invoke();
+            _healthSo.Value = 1;
+        }
+        _healthSlider.value = _healthSo.Value;
+    }
 }

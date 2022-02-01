@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02595065f2c949babbece6de7ab9acbc, type: 3}
-  m_Name: AIHP0
+  m_Name: MaxHealthCloser
   m_EditorClassIdentifier: 
-  Value: 100
+  Value: 200

@@ -8,7 +8,6 @@ public class SomeScriptEditor : Editor
     {
         DrawDefaultInspector();
 
-        EditorGUILayout.HelpBox("This is a help box", MessageType.Info);
         if (GUILayout.Button("Raise!"))
         {
             var evenTest = target as GameEvent;

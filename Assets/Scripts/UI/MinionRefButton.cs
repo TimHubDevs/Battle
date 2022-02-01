@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class MinionButton : MonoBehaviour
+public class MinionRefButton : MonoBehaviour
 {
     [SerializeField] private MinionRef _minionPrefab;
     [SerializeField] private MinionSpawner _minionSpawner;
 
     private void OnMouseDown()
     {
-        var buttons = FindObjectsOfType<MinionButton>();
-        foreach (MinionButton button in buttons)
+        var buttons = FindObjectsOfType<MinionRefButton>();
+        foreach (MinionRefButton button in buttons)
         {
             button.GetComponent<SpriteRenderer>().color = new Color32(41, 41, 41, 255);
         }
