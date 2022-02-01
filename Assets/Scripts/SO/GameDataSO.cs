@@ -3,6 +3,7 @@
 public class GameDataSO : ScriptableObject
 {
     public GameState gameState;
+    public QueueType queueType;
     public PlayerBattleConfigSO playerBattleConfigSo;
     public PlayerBattleConfigSO aiBattleConfigSo;
 
@@ -11,6 +12,15 @@ public class GameDataSO : ScriptableObject
         if (gameState != GameState.NEW) return;
         playerBattleConfigSo.ResetConfig();
         aiBattleConfigSo.ResetConfig();
+        RandomiseQueue();
+    }
+
+    private void RandomiseQueue()
+    {
+        var rnd = new System.Random();
+        QueueType[] queueArray = {QueueType.PLAYER, QueueType.AI};
+        int randomNext = rnd.Next(queueArray.Length);
+        queueType = queueArray[randomNext];
     }
 
     public void SetGameState(GameState gameState)
@@ -23,4 +33,9 @@ public enum GameState
 {
     NEW,
     GAME
+}
+public enum QueueType
+{
+    PLAYER,
+    AI
 }

@@ -210,6 +210,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3736127574651296982}
   - component: {fileID: 3736127574651297065}
+  - component: {fileID: 2987011888669021610}
+  - component: {fileID: 697304459408669842}
   m_Layer: 0
   m_Name: Farer
   m_TagString: Untagged
@@ -283,6 +285,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2987011888669021610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3736127574651297064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f494839fb95a6cd4f9db418e075f7725, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minionSo: {fileID: 11400000, guid: bfad1ee7e8a3a3f478f050adc9c8d4f3, type: 2}
+--- !u!114 &697304459408669842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3736127574651297064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d389fdb806de76498df7332df947161, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 0
 --- !u!1 &5383585560315052361
 GameObject:
   m_ObjectHideFlags: 0

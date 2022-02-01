@@ -12,10 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c531570820c47fc8ad3115eedf1a94e, type: 3}
   m_Name: PlayerMinion
   m_EditorClassIdentifier: 
-  Items:
-  - MinionSo: {fileID: 11400000, guid: 2b4c2daabcc64874a893d81bcc49a4df, type: 2}
-    position: {x: 2, y: 1}
-  - MinionSo: {fileID: 11400000, guid: 2b4c2daabcc64874a893d81bcc49a4df, type: 2}
-    position: {x: 2, y: 2}
-  - MinionSo: {fileID: 11400000, guid: 2b4c2daabcc64874a893d81bcc49a4df, type: 2}
-    position: {x: 2, y: 3}
+  Items: []
