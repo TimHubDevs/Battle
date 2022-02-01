@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GameData
   m_EditorClassIdentifier: 
   gameState: 0
-  queueType: 0
+  queueType: 1
   round: 0
   playerBattleConfigSo: {fileID: 11400000, guid: 26a4615ad39aa074794dbc95915f3611, type: 2}
   aiBattleConfigSo: {fileID: 11400000, guid: 8e39fa5ab5617c846a603a9bd35496ae, type: 2}

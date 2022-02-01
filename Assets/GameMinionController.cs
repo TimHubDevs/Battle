@@ -41,6 +41,12 @@ public class GameMinionController : MonoBehaviour
             _aIMinions.Add(minion);
         }
 
+        if (_gameDataSo.round != 0)
+        {
+            StartCoroutine(ChooseMinionForAttack());
+            return;
+        }
+
         StartNewRound();
     }
 
@@ -183,7 +189,7 @@ public class GameMinionController : MonoBehaviour
                 StartCoroutine(ChooseMinionForAttack());
                 yield break;
             }
-            
+
             //queue event invoke
             _queueEvent.Raise();
 
