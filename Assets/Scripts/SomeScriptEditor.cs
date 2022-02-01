@@ -11,10 +11,8 @@ public class SomeScriptEditor : Editor
         EditorGUILayout.HelpBox("This is a help box", MessageType.Info);
         if (GUILayout.Button("Raise!"))
         {
-            foreach (var gameEvent in FindObjectsOfType<GameEvent>())
-            {
-                gameEvent.Raise();
-            }
+            var evenTest = target as GameEvent;
+            evenTest.Raise();
         }
     }
 }

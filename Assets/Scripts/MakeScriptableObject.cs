@@ -16,4 +16,5 @@ public class MakeScriptableObject {
         
         return asset;
     }
+    
 }

@@ -19,8 +19,14 @@ public class GameDataSO : ScriptableObject
 
     private void ClearHPSO()
     {
-        if (Directory.Exists("Assets/Scripts/SO/Assets/HP")) { Directory.Delete("Assets/Scripts/SO/Assets/HP", true); }
+        Debug.Log("ClearHPSO");
+        if (Directory.Exists("Assets/Scripts/SO/Assets/HP"))
+        {
+            Directory.Delete("Assets/Scripts/SO/Assets/HP", true);
+            Debug.Log("Delete");
+        }
         Directory.CreateDirectory("Assets/Scripts/SO/Assets/HP");
+        Debug.Log("CreateDirectory");
     }
 
     private void RandomiseQueue()

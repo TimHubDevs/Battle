@@ -3,7 +3,6 @@
 [CreateAssetMenu(fileName = "Minion", menuName = "ScriptableObjects/Minion", order = 2)]
 public class MinionSO : ScriptableObject
 {
-    // public string fighterName;
     public TypeFighter typeFighter;
     public GameObject prefab;
     public float health;

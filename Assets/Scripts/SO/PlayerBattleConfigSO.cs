@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerData", menuName = "ScriptableObjects/PlayerConfig", order = 1)]
@@ -10,65 +11,71 @@ public class PlayerBattleConfigSO : ScriptableObject
     public MinionSO farerSO;
     public ListMinionDataSO listMinionDataSo;
     private MinionSO[] MinionSos;
-    private Vector2[] _enemyPositions = new []
+
+    private Vector2[] _enemyPositions = new[]
     {
-        new Vector2(3,1),
-        new Vector2(3,2),
-        new Vector2(3,3),
-        new Vector2(4,3),
-        new Vector2(4,2),
-        new Vector2(4,1),
+        new Vector2(3, 1),
+        new Vector2(3, 2),
+        new Vector2(3, 3),
+        new Vector2(4, 3),
+        new Vector2(4, 2),
+        new Vector2(4, 1),
     };
+
+    private int countMinion = 0;
+    private string PlayerPref = "Player";
+    private string AIPref = "AI";
 
     private void OnEnable()
     {
         MinionSos = new[] {closerSO, farerSO};
+        countMinion = 0;
     }
 
     public void SetMinions(Dictionary<Vector2, TypeFighter> minionData)
     {
-        int count = 1;
         foreach (var fighterData in minionData)
         {
             switch (fighterData.Value)
             {
                 case TypeFighter.CLOSER:
                 {
-                    AddNewMinion(closerSO, fighterData.Key, count);
+                    AddNewMinion(closerSO, fighterData.Key, countMinion, PlayerPref);
                     break;
                 }
                 case TypeFighter.FARER:
                 {
-                    AddNewMinion(farerSO, fighterData.Key, count);
+                    AddNewMinion(farerSO, fighterData.Key, countMinion, PlayerPref);
                     break;
                 }
             }
 
-            count++;
-        }
-    }
-   
-    public void SetAIMinions()
-    {
-        int random = UnityEngine.Random.Range(1, _enemyPositions.Length);
-        var newArray = _enemyPositions.SubArray(random, _enemyPositions.Length - random);
-        var rnd = new System.Random();
-        int count = 1;
-        foreach (var position in newArray)
-        {
-            int randomNext = rnd.Next(MinionSos.Length);
-            AddNewMinion(MinionSos[randomNext], position, count);
-            count++;
+            countMinion++;
         }
     }
 
-    private void AddNewMinion(MinionSO minionSo, Vector2 position, int count)
+    public void SetAIMinions()
     {
-        FloatVariable hpInstance = MakeScriptableObject.CreateFloatVariableAsset("HP" + count);
+        int random = Random.Range(1, _enemyPositions.Length);
+        var newArray = _enemyPositions.SubArray(random, _enemyPositions.Length - random);
+        var rnd = new System.Random();
+        foreach (var position in newArray)
+        {
+            int randomNext = rnd.Next(MinionSos.Length);
+            AddNewMinion(MinionSos[randomNext], position, countMinion, AIPref);
+            countMinion++;
+        }
+    }
+
+    private void AddNewMinion(MinionSO minionSo, Vector2 position, int count, string pref)
+    {
+        FloatVariable hpInstance = MakeScriptableObject.CreateFloatVariableAsset(pref + "HP" + count);
         hpInstance.Init(minionSo.health);
-        FloatVariable maxHpInstance = MakeScriptableObject.CreateFloatVariableAsset("MaxHP" + count);
+        EditorUtility.SetDirty(hpInstance);
+        FloatVariable maxHpInstance = MakeScriptableObject.CreateFloatVariableAsset(pref + "MaxHP" + count);
         maxHpInstance.Init(minionSo.health);
-        
+        EditorUtility.SetDirty(maxHpInstance);
+
         var minionData = new MinionData
         {
             MinionSo = minionSo,
@@ -83,6 +90,7 @@ public class PlayerBattleConfigSO : ScriptableObject
     {
         countCloser = amount;
     }
+
     public void SetCountFarer(int amount)
     {
         countFarer = amount;

@@ -7,8 +7,6 @@ public class FloatVariable : ScriptableObject
 
     public void Init(float value)
     {
-        Debug.Log("New " + value);
-        value = Value;
-        Debug.Log("Is " + Value);
+        Value = value;
     }
 }
