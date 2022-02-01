@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.IO;
+using UnityEngine;
 [CreateAssetMenu(fileName = "GameData", menuName = "ScriptableObjects/GameData", order = 0)]
 public class GameDataSO : ScriptableObject
 {
@@ -12,7 +13,14 @@ public class GameDataSO : ScriptableObject
         if (gameState != GameState.NEW) return;
         playerBattleConfigSo.ResetConfig();
         aiBattleConfigSo.ResetConfig();
+        ClearHPSO();
         RandomiseQueue();
+    }
+
+    private void ClearHPSO()
+    {
+        if (Directory.Exists("Assets/Scripts/SO/Assets/HP")) { Directory.Delete("Assets/Scripts/SO/Assets/HP", true); }
+        Directory.CreateDirectory("Assets/Scripts/SO/Assets/HP");
     }
 
     private void RandomiseQueue()

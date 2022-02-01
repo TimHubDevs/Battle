@@ -1007,8 +1007,9 @@ GameObject:
   - component: {fileID: 604750354}
   - component: {fileID: 604750353}
   - component: {fileID: 604750352}
+  - component: {fileID: 604750356}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: RoundCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1095,6 +1096,34 @@ RectTransform:
   m_AnchoredPosition: {x: 2.5, y: 3}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &604750356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604750351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8211b0b137ac4ebeb150f79530bdb259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 6c72b1e30435f3847b88bec47946bcb1, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 607787591}
+        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+        m_MethodName: ShowRound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &607787590
 GameObject:
   m_ObjectHideFlags: 0
@@ -1125,6 +1154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameDataSo: {fileID: 11400000, guid: 47c7a132076ddae4d8213504506d5b36, type: 2}
+  _roundTextHolder: {fileID: 257105107}
   _turnText: {fileID: 841260808}
 --- !u!4 &607787592
 Transform:

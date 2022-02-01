@@ -6,9 +6,8 @@ public class MinionSO : ScriptableObject
     // public string fighterName;
     public TypeFighter typeFighter;
     public GameObject prefab;
-    // public Vector2 position;
-    public int health;
-    public int damage;
+    public float health;
+    public FloatVariable damage;
 }
 
 public enum TypeFighter
