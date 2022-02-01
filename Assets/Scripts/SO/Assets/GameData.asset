@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdb52181a09e4850a06e652d87f0fb91, type: 3}
+  m_Name: GameData
+  m_EditorClassIdentifier: 
+  gameState: 0
+  playerBattleConfigSo: {fileID: 11400000, guid: 26a4615ad39aa074794dbc95915f3611, type: 2}
+  aiBattleConfigSo: {fileID: 11400000, guid: 8e39fa5ab5617c846a603a9bd35496ae, type: 2}

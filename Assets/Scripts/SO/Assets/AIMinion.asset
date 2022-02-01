@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdb52181a09e4850a06e652d87f0fb91, type: 3}
-  m_Name: GameData
+  m_Script: {fileID: 11500000, guid: 2c531570820c47fc8ad3115eedf1a94e, type: 3}
+  m_Name: AIMinion
   m_EditorClassIdentifier: 
-  GameState: 0
-  playerBattleConfigSo: {fileID: 11400000, guid: 26a4615ad39aa074794dbc95915f3611, type: 2}
-  aiBattleConfigSo: {fileID: 11400000, guid: 8e39fa5ab5617c846a603a9bd35496ae, type: 2}
+  Items: []

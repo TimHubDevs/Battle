@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,7 +9,10 @@ public class ConfigGameController : MonoBehaviour
     [SerializeField] private Button _loadGameButton;
     [SerializeField] private GameObject _minionParent;
     [SerializeField] private PlayerBattleConfigSO _playerBattleConfigSo;
+    [SerializeField] private PlayerBattleConfigSO _AIBattleConfigSo;
     [SerializeField] private GameDataSO _gameDataSO;
+    // private List<MinionRef> _minionRefs = new List<MinionRef>();
+    private Dictionary<Vector2, TypeFighter> _minionData = new Dictionary<Vector2, TypeFighter>();
 
     private void Awake()
     {
@@ -32,27 +36,32 @@ public class ConfigGameController : MonoBehaviour
     {
         int closerCount = 0;
         int farerCount = 0;
-        var minions = FindObjectsOfType<Minion>();
+        var minions = FindObjectsOfType<MinionRef>();
         foreach (var minion in minions)
         {
-            if (minion._typeFighter == TypeFighter.FARER)
+            if (minion.GetTypeFighter() == TypeFighter.FARER)
             {
                 //add minion information to SO Player
+                _minionData.Add(minion.GetPosition(), minion.GetTypeFighter());
                 farerCount++;
             }
-            if (minion._typeFighter == TypeFighter.CLOSER)
+            if (minion.GetTypeFighter() == TypeFighter.CLOSER)
             {
                 //add minion information to SO Player
+                _minionData.Add(minion.GetPosition(), minion.GetTypeFighter());
                 closerCount++;
             }
         }
         _gameDataSO.SetGameState(GameState.GAME);
+        _playerBattleConfigSo.SetMinions(_minionData);
+        _AIBattleConfigSo.SetAIMinions();
         _playerBattleConfigSo.SetCountCloser(closerCount);
         _playerBattleConfigSo.SetCountFarer(farerCount);
     }
 
     private void ClearMinion()
     {
+        _minionData.Clear();
         var childs = _minionParent.transform.childCount;
         for (int i = childs - 1; i >= 0; i--)
         {

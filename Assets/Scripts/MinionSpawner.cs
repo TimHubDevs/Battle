@@ -1,11 +1,13 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MinionSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject _minionParent;
-    private Minion _minion;
+    public List<MinionRef> MinionRefs = new List<MinionRef>();
+    private MinionRef _minion;
 
-    public void SetSelectedDefender(Minion minionToSelect)
+    public void SetSelectedDefender(MinionRef minionToSelect)
     {
         _minion = minionToSelect;
     }
@@ -38,6 +40,6 @@ public class MinionSpawner : MonoBehaviour
 
     private void SpawnMinion(Vector2 roundedPos)
     {
-        Minion minion = Instantiate(_minion, roundedPos, Quaternion.identity, _minionParent.transform);
+        MinionRef minion = Instantiate(_minion, roundedPos, Quaternion.identity, _minionParent.transform);
     }
 }

@@ -383,6 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f494839fb95a6cd4f9db418e075f7725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _minionSo: {fileID: 11400000, guid: 2b4c2daabcc64874a893d81bcc49a4df, type: 2}
 --- !u!114 &6361955436262810771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,6 +396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d389fdb806de76498df7332df947161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _health: 0
 --- !u!1 &6226163020623130837
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MinionButton : MonoBehaviour
 {
-    [SerializeField] private Minion _minionPrefab;
+    [SerializeField] private MinionRef _minionPrefab;
     [SerializeField] private MinionSpawner _minionSpawner;
 
     private void OnMouseDown()
