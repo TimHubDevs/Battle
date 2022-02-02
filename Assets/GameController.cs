@@ -33,7 +33,7 @@ public class GameController : MonoBehaviour
     {
         _roundValueText.text = "Round: " + _gameDataSo.round;
     }
-
+    
     public void ResetNewGameData()
     {
         _gameDataSo.SetGameState(GameState.NEW);
