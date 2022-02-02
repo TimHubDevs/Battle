@@ -32,7 +32,7 @@ public class PlayerBattleConfigSO : ScriptableObject
         countMinion = 0;
     }
 
-    public void SetMinions(Dictionary<Vector2, TypeFighter> minionData)
+    public void SetPlayerMinions(Dictionary<Vector2, TypeFighter> minionData)
     {
         foreach (var fighterData in minionData)
         {
@@ -40,12 +40,12 @@ public class PlayerBattleConfigSO : ScriptableObject
             {
                 case TypeFighter.CLOSER:
                 {
-                    AddNewMinion(closerSO, fighterData.Key, countMinion, PlayerPref);
+                    AddNewMinion(closerSO, fighterData.Key, countMinion, PlayerPref, LordType.PLAYER);
                     break;
                 }
                 case TypeFighter.FARER:
                 {
-                    AddNewMinion(farerSO, fighterData.Key, countMinion, PlayerPref);
+                    AddNewMinion(farerSO, fighterData.Key, countMinion, PlayerPref, LordType.PLAYER);
                     break;
                 }
             }
@@ -62,12 +62,12 @@ public class PlayerBattleConfigSO : ScriptableObject
         foreach (var position in newArray)
         {
             int randomNext = rnd.Next(MinionSos.Length);
-            AddNewMinion(MinionSos[randomNext], position, countMinion, AIPref);
+            AddNewMinion(MinionSos[randomNext], position, countMinion, AIPref, LordType.AI);
             countMinion++;
         }
     }
 
-    private void AddNewMinion(MinionSO minionSo, Vector2 position, int count, string pref)
+    private void AddNewMinion(MinionSO minionSo, Vector2 position, int count, string pref, LordType lordType)
     {
         FloatVariable hpInstance = MakeScriptableObject.CreateFloatVariableAsset(pref + "HP" + count);
         hpInstance.Init(minionSo.health);
@@ -80,7 +80,8 @@ public class PlayerBattleConfigSO : ScriptableObject
             health = hpInstance,
             maxhealth = minionSo.maxHealth,
             damage = minionSo.damage,
-            attacked = false
+            attacked = false,
+            LordType = lordType
         };
         
         listMinionDataSo.Items.Add(minionData);

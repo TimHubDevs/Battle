@@ -387,6 +387,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _minionSo: {fileID: 11400000, guid: 2b4c2daabcc64874a893d81bcc49a4df, type: 2}
   _attackEvent: {fileID: 11400000, guid: da5a2e2cdf007d84a89cc7da4ff57ccb, type: 2}
+  _lordType: 0
+  _enemyMinions: []
 --- !u!114 &6361955436262810771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,6 +441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _minionGO: {fileID: 5560693082328946032}
+  _minion: {fileID: 1133575036695279555}
 --- !u!1 &6226163020623130837
 GameObject:
   m_ObjectHideFlags: 0

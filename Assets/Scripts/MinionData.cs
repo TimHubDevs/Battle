@@ -10,4 +10,5 @@ public class MinionData
     public FloatVariable maxhealth;
     public FloatVariable damage;
     public bool attacked;
+    public LordType LordType;
 }

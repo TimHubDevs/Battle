@@ -57,7 +57,7 @@ public class ConfigGameController : MonoBehaviour
     private void SOWriteData(int closerCount, int farerCount)
     {
         _gameDataSO.SetGameState(GameState.GAME);
-        _playerBattleConfigSo.SetMinions(_minionData);
+        _playerBattleConfigSo.SetPlayerMinions(_minionData);
         _AIBattleConfigSo.SetAIMinions();
         _playerBattleConfigSo.SetCountCloser(closerCount);
         _playerBattleConfigSo.SetCountFarer(farerCount);

@@ -110,3 +110,8 @@ public enum QueueType
     PLAYER,
     AI
 }
+public enum LordType
+{
+    PLAYER,
+    AI
+}

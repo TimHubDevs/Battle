@@ -6,7 +6,7 @@ public class MinionHealth : MonoBehaviour
 {
     [SerializeField] private Slider _healthSlider;
     private FloatVariable _healthSo;
-    public Action onDeath;
+    public Action<GameObject> onDeath;
 
     public void SetSOHealth(FloatVariable health, FloatVariable minionDataMaxhealth)
     {
@@ -19,9 +19,14 @@ public class MinionHealth : MonoBehaviour
         if (!_healthSo) return;
         if (_healthSo.Value <= 0)
         {
-            onDeath.Invoke();
+            onDeath.Invoke(gameObject);
             _healthSo.Value = 1;
         }
         _healthSlider.value = _healthSo.Value;
+    }
+
+    public void GetDamage(float amount)
+    {
+        _healthSo.Init(_healthSo.Value - amount);
     }
 }

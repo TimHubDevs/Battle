@@ -651,6 +651,7 @@ GameObject:
   m_Component:
   - component: {fileID: 181649451}
   - component: {fileID: 181649450}
+  - component: {fileID: 181649452}
   m_Layer: 0
   m_Name: MinionSpawner
   m_TagString: Untagged
@@ -673,6 +674,7 @@ MonoBehaviour:
   _gameDataSo: {fileID: 11400000, guid: 47c7a132076ddae4d8213504506d5b36, type: 2}
   _roundEvent: {fileID: 11400000, guid: 99936b88e81849b4ab7a6daaa6235fcf, type: 2}
   _queueEvent: {fileID: 11400000, guid: 6c72b1e30435f3847b88bec47946bcb1, type: 2}
+  _attackEvent: {fileID: 0}
   _listPlayerMinionDataSo: {fileID: 11400000, guid: 0688c34946e876f4fa3d5684d45778c4, type: 2}
   _listAIMinionDataSo: {fileID: 11400000, guid: 1596d006281e0294ab856c1c0ed81444, type: 2}
   _blockCollider: {fileID: 535387798}
@@ -690,6 +692,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &181649452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181649449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8211b0b137ac4ebeb150f79530bdb259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: da5a2e2cdf007d84a89cc7da4ff57ccb, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 181649449}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &253561320
 GameObject:
   m_ObjectHideFlags: 0
@@ -1162,7 +1192,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.5, y: 2}
+  m_Offset: {x: 2.5, y: 2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1173,7 +1203,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 3}
+  m_Size: {x: 4, y: 3}
   m_EdgeRadius: 0
 --- !u!4 &535387800
 Transform:

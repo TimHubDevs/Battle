@@ -301,6 +301,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _minionSo: {fileID: 11400000, guid: bfad1ee7e8a3a3f478f050adc9c8d4f3, type: 2}
   _attackEvent: {fileID: 11400000, guid: da5a2e2cdf007d84a89cc7da4ff57ccb, type: 2}
+  _lordType: 0
+  _enemyMinions: []
 --- !u!114 &697304459408669842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,6 +329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _minionGO: {fileID: 3736127574651297064}
+  _minion: {fileID: 2987011888669021610}
 --- !u!61 &7020206187694960514
 BoxCollider2D:
   m_ObjectHideFlags: 0

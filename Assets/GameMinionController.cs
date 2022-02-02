@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class GameMinionController : MonoBehaviour
     [SerializeField] private GameDataSO _gameDataSo;
     [SerializeField] private GameEvent _roundEvent;
     [SerializeField] private GameEvent _queueEvent;
+    [SerializeField] private GameEvent _attackEvent;
     [SerializeField] private ListMinionDataSO _listPlayerMinionDataSo;
     [SerializeField] private ListMinionDataSO _listAIMinionDataSo;
     [SerializeField] private GameObject _blockCollider;
@@ -19,11 +21,13 @@ public class GameMinionController : MonoBehaviour
         foreach (var minionData in _listPlayerMinionDataSo.Items)
         {
             GameObject minion = Instantiate(minionData.MinionSo.prefab, minionData.position, Quaternion.identity);
+            minion.GetComponent<Minion>()
+                .Init(minionData.MinionSo.typeFighter + " " + minionData.LordType, LordType.PLAYER);
             minion.GetComponent<MinionHealth>().SetSOHealth(minionData.health, minionData.maxhealth);
             _playerMinions.Add(minion);
-            minion.GetComponent<MinionHealth>().onDeath += () =>
+            minion.GetComponent<MinionHealth>().onDeath += GO =>
             {
-                DeleteMinionFromList(_listPlayerMinionDataSo, _playerMinions, minionData);
+                DeleteMinionFromList(_listPlayerMinionDataSo, _playerMinions, GO, minionData);
                 Destroy(minion);
             };
         }
@@ -31,18 +35,35 @@ public class GameMinionController : MonoBehaviour
         foreach (var minionData in _listAIMinionDataSo.Items)
         {
             GameObject minion = Instantiate(minionData.MinionSo.prefab, minionData.position, Quaternion.identity);
-            minion.GetComponent<MinionButton>().enabled = false;
+            minion.GetComponent<Minion>()
+                .Init(minionData.MinionSo.typeFighter + " " + minionData.LordType, LordType.AI);
+            // minion.GetComponent<MinionButton>().enabled = false;
             minion.GetComponent<MinionHealth>().SetSOHealth(minionData.health, minionData.maxhealth);
             _aIMinions.Add(minion);
-            minion.GetComponent<MinionHealth>().onDeath += () =>
+            minion.GetComponent<MinionHealth>().onDeath += GO =>
             {
-                DeleteMinionFromList(_listAIMinionDataSo, _aIMinions, minionData);
+                DeleteMinionFromList(_listAIMinionDataSo, _aIMinions, GO, minionData);
                 Destroy(minion);
             };
         }
 
+        UpdateEnemyInfo();
+
         if (_gameDataSo.round == 0) return;
         StartCoroutine(ChooseMinionForAttack());
+    }
+
+    private void UpdateEnemyInfo()
+    {
+        foreach (var playerMinion in _playerMinions)
+        {
+            playerMinion.GetComponent<Minion>().SetEnemyInfo(_aIMinions);
+        }
+
+        foreach (var aIMinion in _aIMinions)
+        {
+            aIMinion.GetComponent<Minion>().SetEnemyInfo(_playerMinions);
+        }
     }
 
     private void RoundChecker()
@@ -97,16 +118,12 @@ public class GameMinionController : MonoBehaviour
     }
 
     private void DeleteMinionFromList(ListMinionDataSO minionList, List<GameObject> gameObjectsMinions,
+        GameObject data,
         MinionData minionData)
     {
         minionList.Remove(minionData);
-        foreach (var minion in gameObjectsMinions)
-        {
-            if (minion.GetComponent<Minion>().GetMinionPosition() == minionData.position)
-            {
-                gameObjectsMinions.Remove(minion);
-            }
-        }
+        gameObjectsMinions.Remove(data);
+        UpdateEnemyInfo();
     }
 
     private IEnumerator ChooseMinionForAttack()
@@ -153,7 +170,15 @@ public class GameMinionController : MonoBehaviour
                     _listAIMinionDataSo.Items[randomNext].position)
                 {
                     //attack
-                    aIMinion.GetComponent<Minion>().Attack();
+                    if (aIMinion.GetComponent<Minion>()._minionSo.typeFighter == TypeFighter.FARER)
+                    {
+                        aIMinion.GetComponent<Minion>().RandomAttack();
+                    }
+                    else
+                    {
+                        aIMinion.GetComponent<Minion>().CloserAttack();
+                    }
+
                     _listAIMinionDataSo.Items[randomNext].attacked = true;
 
                     //change queue
@@ -184,7 +209,7 @@ public class GameMinionController : MonoBehaviour
                 StartCoroutine(ChooseMinionForAttack());
                 yield break;
             }
-            
+
             //queue event invoke
             _queueEvent.Raise();
 
@@ -206,9 +231,17 @@ public class GameMinionController : MonoBehaviour
                     }
 
                     //attack
-                    _playerMinions[i].GetComponent<Minion>().Attack();
-                    _listPlayerMinionDataSo.Items[i].attacked = true;
+                    //off block collider enemy
+                    // _blockCollider.SetActive(false);
+                    _playerMinions[i].GetComponent<Minion>().ShowOurEnemy(() =>
+                    {
+                        //on block collider enemy
+                        // _blockCollider.SetActive(true);
+                        _listPlayerMinionDataSo.Items[i].attacked = true;
+                    });
 
+                    yield return new WaitUntil((() => _listPlayerMinionDataSo.Items[i].attacked == true));
+                    
                     //change queue
                     _gameDataSo.queueType = QueueType.AI;
 
