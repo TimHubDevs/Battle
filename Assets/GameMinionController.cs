@@ -40,14 +40,11 @@ public class GameMinionController : MonoBehaviour
             };
             _aIMinions.Add(minion);
         }
+        
+        Debug.Log("!!! Start Game");
 
-        if (_gameDataSo.round != 0)
-        {
-            StartCoroutine(ChooseMinionForAttack());
-            return;
-        }
-
-        StartNewRound();
+        if (_gameDataSo.round == 0) return;
+        StartCoroutine(ChooseMinionForAttack());
     }
 
     private void RoundChecker()

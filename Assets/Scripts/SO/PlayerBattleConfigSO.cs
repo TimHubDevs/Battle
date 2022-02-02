@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -103,7 +103,7 @@ public class PlayerBattleConfigSO : ScriptableObject
         listMinionDataSo.ClearList();
     }
     
-    private FloatVariable CreateFloatVariableAsset(string name)
+    public static FloatVariable CreateFloatVariableAsset(string name)
     {
         FloatVariable asset = ScriptableObject.CreateInstance<FloatVariable>();
 
