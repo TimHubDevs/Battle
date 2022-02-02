@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
@@ -31,5 +32,15 @@ public class GameController : MonoBehaviour
     public void ShowRound()
     {
         _roundValueText.text = "Round: " + _gameDataSo.round;
+    }
+    
+    public void ResetNewGameData()
+    {
+        _gameDataSo.SetGameState(GameState.NEW);
+    }
+
+    public void ExitToMainMenu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }

@@ -20,12 +20,12 @@ public class GameMinionController : MonoBehaviour
         {
             GameObject minion = Instantiate(minionData.MinionSo.prefab, minionData.position, Quaternion.identity);
             minion.GetComponent<MinionHealth>().SetSOHealth(minionData.health, minionData.maxhealth);
+            _playerMinions.Add(minion);
             minion.GetComponent<MinionHealth>().onDeath += () =>
             {
                 DeleteMinionFromList(_listPlayerMinionDataSo, _playerMinions, minionData);
                 Destroy(minion);
             };
-            _playerMinions.Add(minion);
         }
 
         foreach (var minionData in _listAIMinionDataSo.Items)
@@ -33,15 +33,16 @@ public class GameMinionController : MonoBehaviour
             GameObject minion = Instantiate(minionData.MinionSo.prefab, minionData.position, Quaternion.identity);
             minion.GetComponent<MinionButton>().enabled = false;
             minion.GetComponent<MinionHealth>().SetSOHealth(minionData.health, minionData.maxhealth);
+            _aIMinions.Add(minion);
             minion.GetComponent<MinionHealth>().onDeath += () =>
             {
                 DeleteMinionFromList(_listAIMinionDataSo, _aIMinions, minionData);
                 Destroy(minion);
             };
-            _aIMinions.Add(minion);
         }
 
-        StartNewRound();
+        if (_gameDataSo.round == 0) return;
+        StartCoroutine(ChooseMinionForAttack());
     }
 
     private void RoundChecker()
