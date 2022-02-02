@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,10 +7,10 @@ public class GameMinionController : MonoBehaviour
     [SerializeField] private GameDataSO _gameDataSo;
     [SerializeField] private GameEvent _roundEvent;
     [SerializeField] private GameEvent _queueEvent;
-    [SerializeField] private GameEvent _attackEvent;
     [SerializeField] private ListMinionDataSO _listPlayerMinionDataSo;
     [SerializeField] private ListMinionDataSO _listAIMinionDataSo;
-    [SerializeField] private GameObject _blockCollider;
+    [SerializeField] private GameObject _playerBlockCollider;
+    [SerializeField] private GameObject _aiBlockCollider;
     private GameObject _selectedPlayerMinion;
     private List<GameObject> _playerMinions = new List<GameObject>();
     private List<GameObject> _aIMinions = new List<GameObject>();
@@ -23,6 +22,10 @@ public class GameMinionController : MonoBehaviour
             GameObject minion = Instantiate(minionData.MinionSo.prefab, minionData.position, Quaternion.identity);
             minion.GetComponent<Minion>()
                 .Init(minionData.MinionSo.typeFighter + " " + minionData.LordType, LordType.PLAYER);
+            if (minionData.health == null)
+            {
+                
+            }
             minion.GetComponent<MinionHealth>().SetSOHealth(minionData.health, minionData.maxhealth);
             _playerMinions.Add(minion);
             minion.GetComponent<MinionHealth>().onDeath += GO =>
@@ -154,7 +157,8 @@ public class GameMinionController : MonoBehaviour
             _queueEvent.Raise();
 
             //block chosen minion for player (off/on collider)
-            _blockCollider.SetActive(true);
+            _playerBlockCollider.SetActive(true);
+            _aiBlockCollider.SetActive(true);
 
             int randomNext = rnd.Next(_listAIMinionDataSo.Items.Count);
 
@@ -214,10 +218,12 @@ public class GameMinionController : MonoBehaviour
             _queueEvent.Raise();
 
             //unblock chosen minion for player (off/on collider)
-            _blockCollider.SetActive(false);
+            _playerBlockCollider.SetActive(false);
 
             yield return new WaitUntil((() => _selectedPlayerMinion != null));
-
+            
+            _playerBlockCollider.SetActive(true);
+            
             for (int i = _playerMinions.Count - 1; i >= 0; i--)
             {
                 if (_playerMinions[i] == _selectedPlayerMinion)
@@ -230,13 +236,12 @@ public class GameMinionController : MonoBehaviour
                         yield break;
                     }
 
-                    //attack
                     //off block collider enemy
-                    // _blockCollider.SetActive(false);
+                    _aiBlockCollider.SetActive(false);
                     _playerMinions[i].GetComponent<Minion>().ShowOurEnemy(() =>
                     {
                         //on block collider enemy
-                        // _blockCollider.SetActive(true);
+                        _aiBlockCollider.SetActive(true);
                         _listPlayerMinionDataSo.Items[i].attacked = true;
                     });
 

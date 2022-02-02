@@ -93,7 +93,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1559699557
   m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &8875469410939028092
@@ -389,6 +389,7 @@ MonoBehaviour:
   _attackEvent: {fileID: 11400000, guid: da5a2e2cdf007d84a89cc7da4ff57ccb, type: 2}
   _lordType: 0
   _enemyMinions: []
+  _closestEnemies: []
 --- !u!114 &6361955436262810771
 MonoBehaviour:
   m_ObjectHideFlags: 0

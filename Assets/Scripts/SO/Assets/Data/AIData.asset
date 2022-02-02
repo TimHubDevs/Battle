@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c853711d349c47b2a15608407ebf857d, type: 3}
-  m_Name: PlayerData
+  m_Name: AIData
   m_EditorClassIdentifier: 
-  countCloser: 3
+  countCloser: 1
   countFarer: 0
   closerSO: {fileID: 11400000, guid: 2b4c2daabcc64874a893d81bcc49a4df, type: 2}
   farerSO: {fileID: 11400000, guid: bfad1ee7e8a3a3f478f050adc9c8d4f3, type: 2}
-  listMinionDataSo: {fileID: 11400000, guid: 0688c34946e876f4fa3d5684d45778c4, type: 2}
+  listMinionDataSo: {fileID: 11400000, guid: 1596d006281e0294ab856c1c0ed81444, type: 2}

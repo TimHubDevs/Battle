@@ -15,7 +15,6 @@ public class MinionButton : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log("Choose " + _minionGO.GetComponent<Minion>().GetMinionPosition());
         if (_minion._lordType == LordType.AI)
         {
             onPress.Invoke(gameObject);
