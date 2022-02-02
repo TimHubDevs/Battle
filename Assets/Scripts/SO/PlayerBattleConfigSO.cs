@@ -69,7 +69,7 @@ public class PlayerBattleConfigSO : ScriptableObject
 
     private void AddNewMinion(MinionSO minionSo, Vector2 position, int count, string pref)
     {
-        FloatVariable hpInstance = CreateFloatVariableAsset(pref + "HP" + count);
+        FloatVariable hpInstance = MakeScriptableObject.CreateFloatVariableAsset(pref + "HP" + count);
         hpInstance.Init(minionSo.health);
         EditorUtility.SetDirty(hpInstance);
 
@@ -101,19 +101,5 @@ public class PlayerBattleConfigSO : ScriptableObject
         countCloser = 0;
         countFarer = 0;
         listMinionDataSo.ClearList();
-    }
-    
-    public static FloatVariable CreateFloatVariableAsset(string name)
-    {
-        FloatVariable asset = ScriptableObject.CreateInstance<FloatVariable>();
-
-        AssetDatabase.CreateAsset(asset, "Assets/Scripts/SO/Assets/HP/"+name+".asset");
-        AssetDatabase.SaveAssets();
-
-        EditorUtility.FocusProjectWindow();
-
-        Selection.activeObject = asset;
-        
-        return asset;
     }
 }
